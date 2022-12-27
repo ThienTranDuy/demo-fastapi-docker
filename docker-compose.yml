@@ -1,12 +1,12 @@
-version: '3.4'
+version: '3.8'
 
 services:
   app:
-    image: application
+    container_name: application
     build: application
-    restart: always
     network_mode: "host"
-    command: uvicorn main:app --host 127.0.0.1 --port 8000 --reload
+    restart: always
+    command: uvicorn main:app --host 127.0.0.1 --port 8001 --reload
     volumes:
       - ./application:/usr/src/app
     environment:
@@ -14,4 +14,6 @@ services:
     env_file:
       - .env
     ports:
-      - 8000:8000
+      - 8001:8001
+    # networks:
+    #   - default
